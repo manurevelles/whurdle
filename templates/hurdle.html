@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h2>- Simplified <i>Wordle</i> (one word each time) -</h2>
+    <br>
+    {% if guess_history %}
+    <table>
+        <caption>SCORES</caption>
+        <tr>
+            <th scope="col">Guess</th>
+            <th scope="col">RIGHT LETTER <br/> and SPOT</th>
+            <th scope="col">RIGHT LETTER, WRONG SPOT</th>
+        </tr>
+            {% for key, value in guess_history.items() %}
+                <tr>
+                    <td>{{ value["1"] }}</td>
+                    <td>{{ value["2"] }}</td>
+                    <td>{{ value["3"] }}</td>
+                </tr>
+            {% endfor %}
+    </table>
+    {% endif %}
+    <br />
+
+    {% if available_letters and not victory and tries_left != 6 %}
+    <table class="not_used_letters">
+        <caption>Letters not yet used</caption>
+        {% for number in range(0, 26, 7) %}
+            <tr>
+                {% for letter in available_letters[number:number+7] %}
+                    <td> {{ letter }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br />
+    {% endif %}
+
+    {% if message %}
+    <p class="message">
+        {{ message }}
+        {% if victory == False and tries_left == 0 %}
+            <b>{{ secret_word }}</b>
+        {% endif %}
+    </p>
+    {% endif %}
+
+    {% if victory %}
+        <p>You guessed <b>{{ secret_word }}</b> in {{ 7 - tries_left }} attempts</p>
+    {% else %}
+        <p>{{ tries_left }} remaining attempts</p>
+    {% endif %}
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.guess.label }}
+        {{ form.guess(maxlength=5, size=4) }}
+        {% for error in form.guess.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.submit() }}
+    </form>
+
+    <br />
+    <br />
+    <a href="{{ url_for ('whurdle') }}"> >> Go to Whurdle: same word for everyone, different one each day</a>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+* {
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@viewport {
+    width: device-width;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+form {
+    max-width: max-content;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.not_used_letters {
+    width: 355px;
+}
+
+th, td {
+    border: 1px solid black;
+    font-weight: bold;
+    padding: 0.4em;
+    width: 163px;
+    text-align: center;
+}
+
+th {
+    font-size: 0.9em;
+    font-style: italic;
+    background-color: lightgrey;
+}
+
+caption {
+    border: 1px solid black;
+    border-bottom: 0;
+    background-color: lightgrey;
+    font-weight: bold;
+}
+
+p {
+    color: red;
+}
+
+.message {
+    width: 500px;
+    padding:1em;
+    color: black;
+    border: 1px solid black;
+    background-color: antiquewhite;
+}
+
+span {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+b {
+    text-transform: uppercase;
+}
+
+a {
+    font-size: 0.7em;
+}
+
+@media screen and (max-width: 600px) {
+    .message {
+        width: 15em;
+}
